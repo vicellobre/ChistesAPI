@@ -1,0 +1,7 @@
+services:
+  enjoy.api:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ASPNETCORE_URLS: http://+:8080
+      # Misma red Docker: resolución enjoy-db; puerto interno del contenedor PostgreSQL
+      ConnectionStrings__ConnectionEnjoy: Host=enjoy-db;Port=5432;Database=enjoydb;Username=postgres;Password=password

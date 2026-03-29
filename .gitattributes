@@ -1,0 +1,39 @@
+# Comportamiento por defecto: Git detecta texto y normaliza line endings
+* text=auto
+
+# Scripts y config Unix: siempre LF
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+*.env text eol=lf
+
+# Docker
+Dockerfile text eol=lf
+*.dockerignore text eol=lf
+
+# Configuración compartida entre sistemas
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Código .NET: LF y diff mejorado para C#
+*.cs text diff=csharp eol=lf
+*.csproj text eol=lf
+*.sln text eol=lf
+*.slnx text eol=lf
+*.props text eol=lf
+*.targets text eol=lf
+
+# Binarios: no tocar line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.snk binary
+*.dll binary
+*.exe binary
+*.nupkg binary
+*.snupkg binary

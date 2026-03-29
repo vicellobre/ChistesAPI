@@ -1,0 +1,51 @@
+services:
+  enjoy.api:
+    image: ${DOCKER_REGISTRY-}enjoyapi
+    container_name: Enjoy.Api
+    build:
+      context: .
+      dockerfile: src/Enjoy.API/Dockerfile
+    environment:
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://enjoy-seq:5341/ingest/otlp
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+    ports:
+      - "8080:8080"
+    depends_on:
+      enjoy-db:
+        condition: service_healthy
+      enjoy-seq:
+        condition: service_started
+
+  # PG 18+: montar el directorio padre (no /var/lib/postgresql/data). Ver imagen oficial.
+  enjoy-db:
+    image: postgres:18
+    container_name: Enjoy.Db
+    environment:
+      POSTGRES_DB: enjoydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d enjoydb" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    volumes:
+      - ./.containers/pgdata:/var/lib/postgresql
+    ports:
+      # Host 5433 evita choque con PostgreSQL local u otro proceso en 5432
+      - "5433:5432"
+
+  enjoy-seq:
+    image: datalust/seq:latest
+    container_name: Enjoy.Seq
+    environment:
+      - ACCEPT_EULA=Y
+      # Arranque inicial desatendido (imagen actual de Seq); sin esto el proceso puede terminar con código 1.
+      - SEQ_FIRSTRUN_ADMINPASSWORD=EnjoySeq1!
+    ports:
+      # Host 5342 si 5341 ya está ocupado en el equipo (otro Seq, OTLP, etc.)
+      - "5342:5341"
+      - "8081:80"
+    volumes:
+      - ./.containers/seq_data:/data

@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Enjoy.API/Enjoy.API.csproj" Id="4037f58d-236e-421e-ab1f-391aad42aada" />
+    <Project Path="src/Enjoy.Application/Enjoy.Application.csproj" Id="425b2c06-c911-4439-a303-f56449e01c43" />
+    <Project Path="src/Enjoy.Domain/Enjoy.Domain.csproj" />
+    <Project Path="src/Enjoy.Infrastructure/Enjoy.Infrastructure.csproj" Id="42eac47d-11ad-4200-8713-5b595660ff67" />
+    <Project Path="src/Enjoy.Persistence/Enjoy.Persistence.csproj" Id="40cbb396-6f51-4ea0-a553-4dd7599b38fb" />
+    <Project Path="src/Enjoy.Presentation/Enjoy.Presentation.csproj" Id="70ceedc4-0d71-4b97-adb2-fd8113646a2c" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Enjoy.Domain.UnitTests/Enjoy.Domain.UnitTests.csproj" />
+  </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+</Solution>

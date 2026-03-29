@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <Compile Remove="Abstractions\Filters\**" />
+    <EmbeddedResource Remove="Abstractions\Filters\**" />
+    <None Remove="Abstractions\Filters\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Serilog.AspNetCore" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Enjoy.Domain\Enjoy.Domain.csproj" />
+  </ItemGroup>
+</Project>
